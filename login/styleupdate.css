@@ -1,0 +1,37 @@
+/* Estilos Generales para el Contenedor */
+.update-container {
+    background-color: #f2f2f2; /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 300px; /* Ancho del contenedor */
+    margin: auto; /* Centrar el contenedor */
+  }
+  
+  /* Estilos para los inputs */
+  .ipt-form {
+    width: 100%; /* Ancho completo dentro del contenedor */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Margen entre elementos */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  /* Estilos para el botón de submit */
+  .ipt-btn {
+    width: 100%; /* Ancho completo dentro del contenedor */
+    background-color: #0a76be; /* Color de fondo */
+    color: white; /* Color de texto */
+    padding: 14px 20px; /* Espaciado interno */
+    margin: 8px 0; /* Margen superior e inferior */
+    border: none; /* Sin bordes */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+  }
+  
+  /* Mensajes de error */
+  div {
+    color: black; /* Color de texto */
+    text-align: center; /* Centrar texto */
+    font-size: 17px; /* Tamaño de fuente */
+  }
+  
