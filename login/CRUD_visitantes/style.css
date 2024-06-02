@@ -90,7 +90,7 @@ td:last-child {
     display: flex;
     justify-content: center; 
     padding: 5px; 
-    margin-top: -450px;
+    margin-top: 45px;
 }
 
 .reg-btn {
@@ -110,4 +110,3 @@ td:last-child {
 .table {
     width: 100%;
 }
-

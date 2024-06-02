@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif; /* Fuente del documento */
+    background-color: #f0f4f8; /* Color de fondo del cuerpo */
+  }
+  
+  a {
+    color: #007bff; /* Color de los enlaces */
+    text-decoration: none; /* Remover subrayado de los enlaces */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Subrayar enlace al pasar el mouse */
+  }
+  
+  form {
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: auto; /* Centrar el formulario */
+    padding: 20px; /* Espaciado interno del formulario */
+    background-color: #ffffff; /* Fondo del formulario */
+    border-radius: 8px; /* Bordes redondeados del formulario */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra del formulario */
+  }
+  
+  table {
+    width: 100%; /* Ancho de la tabla */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+  }
+  
+  td {
+    padding: 8px; /* Espaciado interno de las celdas */
+  }
+  
+  input[type="text"], input[type="submit"] {
+    width: 95%; /* Ancho de los inputs */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 6px; /* Margen superior */
+    margin-bottom: 16px; /* Margen inferior */
+    border: 1px solid #ccc; /* Borde de los inputs */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color de texto del botón */
+    cursor: pointer; /* Cambiar cursor a puntero */
+    border: none; /* Remover borde del botón */
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3; /* Oscurecer botón al pasar el mouse */
+  }
+  

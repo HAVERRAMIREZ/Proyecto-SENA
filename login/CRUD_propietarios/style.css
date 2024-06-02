@@ -89,8 +89,9 @@ td:last-child {
 .button-container {
     display: flex;
     justify-content: center; 
-    padding: 5px; 
-    margin-top: -445px;
+    padding: 20px; 
+    margin-top: -45px;
+    margin: 10px auto; 
 }
 
 .reg-btn {

@@ -6,53 +6,51 @@
 <body>
 <?php
 include_once("config.php");
+
 if(isset($_POST['Submit'])) {
-$nombres = $_POST['nombres'];
-$apellidos = $_POST['apellidos'];
-$telefono = $_POST['telefono'];
-$cedula = $_POST['cedula'];
-$contraseña = $_POST['contraseña'];
+    $Nombres = $_POST['Nombres'];
+    $Apellidos = $_POST['Apellidos'];
+    $Cedula = $_POST['Cedula'];
+    $Contraseña = $_POST['Contraseña'];
 
-if(empty($nombres) || empty($apellidos) ||
-empty($telefono) || empty($cedula)) {
+    if(empty($Nombres) || empty($Apellidos) || empty($Cedula) || empty($Contraseña)) {
+        if(empty($Nombres)) {
+            echo "<font color='red'>Campo: nombre está vacío.</font><br/>";
+        }
+        if(empty($Apellidos)) {
+            echo "<font color='red'>Campo: apellido está vacío.</font><br/>";
+        }
+        if(empty($Cedula)) {
+            echo "<font color='red'>Campo: cédula está vacío.</font><br/>";
+        }
+        if(empty($Contraseña)) {
+            echo "<font color='red'>Campo: contraseña está vacío.</font><br/>";
+        }
+        echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
+    } else {
+        // Verificar si la cédula ya existe en la base de datos
+        $query_check = $dbConn->prepare("SELECT COUNT(*) FROM Agente_de_seguridad WHERE Cedula = :Cedula");
+        $query_check->bindParam(':Cedula', $Cedula);
+        $query_check->execute();
+        $count = $query_check->fetchColumn();
 
-if(empty($nombres)) {
-echo "<font color='red'>Campo: nombre esta
-vacio.</font><br/>";
-}
-if(empty($apellidos)) {
-echo "<font color='red'>Campo: apellido esta
-vacio.</font><br/>";
-}
-if(empty($telefono)) {
-echo "<font color='red'>Campo: telefono esta
-vacio.</font><br/>";
-}
-if(empty($cedula)) {
-echo "<font color='red'>Campo: cedula esta
-vacio.</font><br/>";
-}
+        if ($count > 0) {
+            echo "<font color='red'>La cédula ya existe en la base de datos.</font><br/>";
+            echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
+        } else {
+            // Insertar el nuevo registro
+            $sql = "INSERT INTO Agente_de_seguridad (nombres, apellidos, cedula, contrasena) VALUES (:Nombres, :Apellidos, :Cedula, :Contraseña)";
+            $query = $dbConn->prepare($sql);
+            $query->bindParam(':Nombres', $Nombres);
+            $query->bindParam(':Apellidos', $Apellidos);
+            $query->bindParam(':Cedula', $Cedula);
+            $query->bindParam(':Contraseña', $Contraseña);
+            $query->execute();
 
-if(empty($contraseña)) {
-    echo "<font color='red'>Campo: contraseña esta
-    vacio.</font><br/>";
+            echo "<font color='green'>Registro agregado correctamente.</font>";
+            echo "<br/><a href='index.php'>Ver todos los registros</a>";
+        }
     }
-
-echo "<br/><a href='javascript:self.history.back();'>Volver</a>";
-} else {
-
-$sql = "INSERT INTO propietarios (nombres, apellidos, telefono, cedula, contrasena) VALUES(:nombres, :apellidos, :telefono, :cedula, :contrasena)";
-$query = $dbConn->prepare($sql);
-$query->bindparam(':nombres', $nombres);
-$query->bindparam(':apellidos', $apellidos);
-$query->bindparam(':telefono', $telefono);
-$query->bindparam(':cedula', $cedula);
-$query->bindparam(':contrasena', $contraseña);
-$query->execute();
-echo "<font color='green'>Registro Agregado Correctamente.";
-echo "Cantidad de Registros Agregados: ".$query->rowCount()."<br>";
-echo "<br/><a href='index.php'>Ver Todos los Registros</a>";
-}
 }
 ?>
 </body>

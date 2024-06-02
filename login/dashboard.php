@@ -1,19 +1,28 @@
 <?php
-	require 'config.php';
-	if(empty($_SESSION['cedula'])) {
-		header('Location: login.php');
-		exit; 
-	}
+    // Configuración de la base de datos
+    $host = 'localhost';
+    $dbname = 'nombre_basedatos';
+    $username = 'nombre_usuario';
+    $password = 'contraseña';
+
+    // Crear una instancia de la clase PDO para la conexión a la base de datos
+    try {
+        $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styledashboard.css">
 </head>
 <body>
-	<div class="dashboard-wrapper">
+    <div class="dashboard-wrapper">
 
         <div class="sidebar">
             <div class="menu-item">
@@ -26,7 +35,7 @@
                 <a href="CRUD_residentes/index.php">Residentes</a>
             </div>
             <div class="menu-item">
-                <a href="CRUD_visitantes/index.php">Administrador</a>
+                <a href="CRUD_visitantes/index.php">Visitantes </a>
             </div>
         </div>
 
@@ -45,6 +54,14 @@
                 </div>
             </div>
 
+            <div class="tipo-paquete">
+                <h2>Tipos de Paquete</h2>
+                <ul>
+                    <?php foreach ($tipos_paquete as $tipo): ?>
+                        <li><?php echo $tipo['tipo']; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
 
         </div>
     </div>

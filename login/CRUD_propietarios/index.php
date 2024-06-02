@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="style.css">        
 </head>
 <body>
-    <a href="add.html" class="btn-lila">Adicionar propietarios</a><br/><br/>
+   
+    <div class="button-container">
+                <button onclick="window.location.href='../dashboard.php'" class="reg-btn">Regresar</button>
+            </div> 
+    <a href="add.html" class="btn-lila">Adicionar propietarios</a><br/><br/> 
     <div class="container">
         <table class="table">
             <thead>
@@ -40,9 +44,7 @@
                 ?>
             </tbody>
         </table>
-        <div class="button-container">
-                <button onclick="window.location.href='../dashboard.php'" class="reg-btn">Regresar</button>
-            </div>
+       
         </body>
     </div>
     
