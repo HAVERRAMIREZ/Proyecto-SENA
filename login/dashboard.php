@@ -1,9 +1,11 @@
 <?php
+    session_start();
+
     // Configuración de la base de datos
     $host = 'localhost';
-    $dbname = 'nombre_basedatos';
-    $username = 'nombre_usuario';
-    $password = 'contraseña';
+    $dbname = 'smart_locker';
+    $username = 'root';
+    $password = '';
 
     // Crear una instancia de la clase PDO para la conexión a la base de datos
     try {
@@ -11,9 +13,15 @@
         $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
+        exit();
+    }
+
+    // Verificar si el usuario está logueado
+    if (!isset($_SESSION['nombres'])) {
+        header('Location: login.php');
+        exit();
     }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +31,6 @@
 </head>
 <body>
     <div class="dashboard-wrapper">
-
         <div class="sidebar">
             <div class="menu-item">
                 <a href="CRUD_agente_de_seguridad/index.php">Agentes de Seguridad</a>
@@ -37,33 +44,26 @@
             <div class="menu-item">
                 <a href="CRUD_visitantes/index.php">Visitantes </a>
             </div>
+            <div class="menu-item">
+                <a href="crud_tipo_paquete.php">Tipos de Paquete</a>
+            </div>
         </div>
 
         <div class="main-panel">
-            <?php
-                if(isset($errMsg)){
-                    echo '<div style="text-align:center;font-size:17px;">'.$errMsg.'</div>';
-                }
-            ?>
+            <?php if (isset($errMsg)): ?>
+                <div style="text-align:center;font-size:17px;"><?php echo $errMsg; ?></div>
+            <?php endif; ?>
 
             <div class="user-top">
-                <p>Bienvenido <?php echo $_SESSION['nombres']; ?></p>
+                <p>Bienvenido <?php echo htmlspecialchars($_SESSION['nombres']); ?></p>
                 <div>
                     <button class="crud-button" onclick="location.href='update.php'">Actualizar</button>
                     <button class="crud-button" onclick="location.href='logout.php'">Salir</button>
                 </div>
             </div>
-
-            <div class="tipo-paquete">
-                <h2>Tipos de Paquete</h2>
-                <ul>
-                    <?php foreach ($tipos_paquete as $tipo): ?>
-                        <li><?php echo $tipo['tipo']; ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
         </div>
     </div>
 </body>
 </html>
+
+
